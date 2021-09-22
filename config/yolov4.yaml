@@ -1,0 +1,34 @@
+MODEL:
+  MODEL_NAME: yolov4
+  MODEL_PATH: model_data/model_weights/yolov4.h5
+  BACKBONE:
+    NAME: CSPDarkNet53
+    BASE: 8
+    ATTENTION_TYPE: None
+LOSS:
+  USE_LABEL_SMOOTHING: True
+  USE_GIOU_LOSS: False
+  USE_DIOU_LOSS: False
+  USE_CIOU_LOSS: True
+
+INPUT:
+  SIZE_TRAIN: [ 608,608 ]
+  SIZE_VAL: [ 608,608 ]
+
+SOLVER:
+  OPITIMIZER_NAME: Adam
+  EPOCH: 500
+  LEARNING_RATE: 0.001
+  BATCH_SIZE: 8
+
+  SCHED:
+    NAME: ReduceLROnPlateau
+    FACTOR: 0.1
+    PATIENCE: 2
+
+  EARLYSTOPPING:
+    MIN_DELTA: 1e-6
+    PATIENCE: 20
+
+LOGS_DIR: logs
+CHECKPOINTS_DIR: checkpoints/

@@ -1,0 +1,2 @@
+#!/bin/bash
+python tools/voc2coco_annotation.py --voc_dataset_dir /home/dpw/daipuwei/ObjectDetection/dataset/BDD100k-Daytime --coco_dataset_dir model_data/COCO/BDD100k-Daytime/ --classes_path model_data/bdd100k_classes.txt --ext .jpg

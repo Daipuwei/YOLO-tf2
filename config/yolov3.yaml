@@ -1,0 +1,36 @@
+MODEL:
+  MODEL_NAME: yolov3
+  MODEL_PATH: model_data/model_weights/yolov3.h5
+  USE_SPP: False
+  BACKBONE:
+    NAME: DarkNet53
+    BASE: 8
+    ATTENTION_TYPE: None
+
+LOSS:
+  USE_LABEL_SMOOTHING: False
+  USE_GIOU_LOSS: False
+  USE_DIOU_LOSS: False
+  USE_CIOU_LOSS: False
+
+INPUT:
+  SIZE_TRAIN: [ 608,1216 ]
+  SIZE_VAL: [ 608,1216 ]
+
+SOLVER:
+  OPITIMIZER_NAME: Adam
+  EPOCH: 500
+  LEARNING_RATE: 0.001
+  BATCH_SIZE: 16
+
+  SCHED:
+    NAME: ReduceLROnPlateau
+    FACTOR: 0.1
+    PATIENCE: 2
+
+  EARLYSTOPPING:
+    MIN_DELTA: 1e-6
+    PATIENCE: 20
+
+LOGS_DIR: logs/
+CHECKPOINTS_DIR: checkpoints/

@@ -1,0 +1,35 @@
+_BASE_: ../yolov4-p5.yaml
+
+DATASET:
+  TRAIN_TXT_PATH: model_data/COCO/BDD100k-Daytime/train.txt
+  VAL_TXT_PATH: model_data/COCO/BDD100k-Daytime/val.txt
+  ANCHORS_PATH: model_data/bdd100k_yolov4_p5_anchors.txt
+  CLASSES_PATH: model_data/bdd100k_classes.txt
+  MAX_BOXES: 50
+  IOU_THRESHOLD: 0.5
+  SCORE_THRESHOLD: 0.6
+  IGNORE_THRESHOLD: 0.5
+  LETTERBOX_IMAGE: True
+  USE_MOSAIC: True
+
+INPUT:
+  SIZE_TRAIN: [ 608,608 ]
+  SIZE_VAL: [ 608,608 ]
+
+SOLVER:
+  OPITIMIZER_NAME: Adadelta
+  EPOCH: 300
+  LEARNING_RATE: 1.
+  BATCH_SIZE: 16
+
+  SCHED:
+    NAME: ReduceLROnPlateau
+    FACTOR: 0.5
+    PATIENCE: 3
+
+  EARLYSTOPPING:
+    MIN_DELTA: 1e-6
+    PATIENCE: 20
+
+LOGS_DIR: logs/BDD100k-Daytime/yolov4-p5/640x1280/batchsize=16/use_mosaic=1/Adadelta-lr=1.0
+CHECKPOINTS_DIR: checkpoints/BDD100k-Daytime/yolov4-p5/640x1280/batchsize=16/use_mosaic=1/Adadelta-lr=1.0
